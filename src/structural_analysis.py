@@ -2,6 +2,9 @@
 import load_calculator
 import math
 
+#function for selector.choose_profile to calculate self_weith and loads:
+def calculate_self_weight(mass_per_m):
+    return (mass_per_m*9.81/1000)
 
 def calculate_moment(comb_load, span):
     #max Momentum is equal to (wL^2)/8
