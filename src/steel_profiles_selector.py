@@ -3,10 +3,8 @@ import load_calculator
 import shared_data
 import pandas as pd 
 
-
 def load_profiles_from_csv(file_path):
     return pd.read_csv(file_path)
-
 
 def choose_profile(span, profiles_df):
     suitable_profiles = []
@@ -27,16 +25,18 @@ def choose_profile(span, profiles_df):
     
     #calculation max forces in given steel section:
         mcrd_moment = structural_analysis.calculate_Mcrd_moment(profile['plastic_section_modulus(cm^3)'], profile['steel_grade'])
-        vcrd_vertical_force = structural_analysis.calculate_Vcrd_vertical_force(profile['section_area(cm^2)'], profile['steel_grade'])
+        vcrd_vertical_force = structural_analysis.calculate_Vcrd_vertical_force(
+            profile['section_area(cm^2)'],profile["b"],
+            profile["tf"],profile["tw"],profile["r"], profile['steel_grade'])
 
-        if mcrd_moment > moment and vcrd_vertical_force > vertical_force:
-            print(f'testing Mcrd: {mcrd_moment}, moment: {moment} Vcrd: {vcrd_vertical_force}, V: {vertical_force} ')
-            #todo: deflection check (span needed)
-            #E and I should be taken from steel profile data
-            #E = 210GPa, I = 5000cm^4
-            ##todo fix constant moment of inertia
-            #deflection = structural_analisis.calculate_deflection(total_load, span, 210000, 5000)
+        #if mcrd_moment > moment and vcrd_vertical_force > vertical_force:
+        if True: 
+            deflection = structural_analysis.calculate_deflection(
+                total_load, span, shared_data.E, profile["moment_of_inertia_Iy(cm^4)"])
+            
+            print(f'testing: Mcrd: {mcrd_moment}, moment: {moment} Vcrd: {vcrd_vertical_force}, V: {vertical_force}, deflection: {deflection} ')
 
+            #if deflection < shared_data.max_deflection:
             suitable_profiles.append(profile)
     
     return suitable_profiles

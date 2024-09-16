@@ -13,17 +13,15 @@ def calculate_moment(comb_load, span):
 
 def calculate_vertical_force(comb_load, span):
     return (1/2 * comb_load * span)
-    #maksymalna sila przenoszona przez dany przekroj:
-    #max value of Vertical force is equal to (A*fy/sqr(3))
-    #return (area*(steel_grade/math.sqrt(3)))
 
 def calculate_Mcrd_moment(plastic_section_modulus, steel_grade):
     #plastic section modulus in mm^3, steel grade in kN
     mcrd_moment = plastic_section_modulus * steel_grade /1000
     return mcrd_moment
 
-def calculate_Vcrd_vertical_force(section_area, steel_grade):
-    vcrd_vertical_force = section_area*(steel_grade / math.sqrt(3))
+def calculate_Vcrd_vertical_force(section_area,b,tf,tw,r,steel_grade):
+    active_area=section_area-2*b*tf+(tw+2*r)*tf
+    vcrd_vertical_force = active_area*(steel_grade/math.sqrt(3))
     return vcrd_vertical_force
 
 def calculate_deflection(load, span, modulus_of_elasticity, moment_of_inertia):
