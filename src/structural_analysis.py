@@ -20,11 +20,11 @@ def calculate_Mcrd_moment(plastic_section_modulus, steel_grade):
     return mcrd_moment
 
 def calculate_Vcrd_vertical_force(section_area,b,tf,tw,r,steel_grade):
-    active_area=section_area-2*b*tf+(tw+2*r)*tf
-    vcrd_vertical_force = active_area*(steel_grade/math.sqrt(3))
+    active_area=section_area*100-2*b*tf+(tw+2*r)*tf
+    vcrd_vertical_force = active_area*(steel_grade/math.sqrt(3)/1000)
     return vcrd_vertical_force
 
-def calculate_deflection(load, span, modulus_of_elasticity, moment_of_inertia):
+def calculate_deflection(load, span, young_module, moment_of_inertia):
 #     #max deflection is equal to (5wL^4)/384EI
 #     # w - load, L - span, E - Youngs module, I - moment of interia
-     return (5 * load * span ** 4) / (384 * modulus_of_elasticity * moment_of_inertia)
+     return ((5 * load * span ** 4) / (384 * young_module * moment_of_inertia))*1000000

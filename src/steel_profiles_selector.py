@@ -34,9 +34,10 @@ def choose_profile(span, profiles_df):
             deflection = structural_analysis.calculate_deflection(
                 total_load, span, shared_data.E, profile["moment_of_inertia_Iy(cm^4)"])
             
-            print(f'testing: Mcrd: {mcrd_moment}, moment: {moment} Vcrd: {vcrd_vertical_force}, V: {vertical_force}, deflection: {deflection} ')
-
-            #if deflection < shared_data.max_deflection:
-            suitable_profiles.append(profile)
+            print(f'\n testing: {profile["profile_type"]} Mcrd: {mcrd_moment}, moment: {moment} Vcrd: {vcrd_vertical_force}, V: {vertical_force}, deflection: {deflection} ')
+            print(f"total_load: {total_load}, combination load: {combination_load}")
+            print(f"max def: {shared_data.max_deflection}")
+            if deflection < shared_data.max_deflection:
+                suitable_profiles.append(profile)
     
     return suitable_profiles
