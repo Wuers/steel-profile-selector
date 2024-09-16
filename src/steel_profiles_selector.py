@@ -26,8 +26,8 @@ def choose_profile(span, profiles_df):
         vertical_force = structural_analysis.calculate_vertical_force(combination_load, shared_data.span)
     
     #calculation max forces in given steel section:
-        mcrd_moment = structural_analysis.calculate_Mcrd_moment(profile['plastic_section_modulus'], profile['steel_grade'])
-        vcrd_vertical_force = structural_analysis.calculate_Vcrd_vertical_force(profile['section_area'], profile['steel_grade'])
+        mcrd_moment = structural_analysis.calculate_Mcrd_moment(profile['plastic_section_modulus(cm^3)'], profile['steel_grade'])
+        vcrd_vertical_force = structural_analysis.calculate_Vcrd_vertical_force(profile['section_area(cm^2)'], profile['steel_grade'])
 
         if mcrd_moment > moment and vcrd_vertical_force > vertical_force:
             print(f'testing Mcrd: {mcrd_moment}, moment: {moment} Vcrd: {vcrd_vertical_force}, V: {vertical_force} ')
