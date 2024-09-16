@@ -1,6 +1,6 @@
 import load_calculator
 import steel_profiles_selector
-import structural_analisis
+import structural_analysis
 
 def main():
     #parameters that needs an input:
@@ -20,8 +20,8 @@ def main():
 
     #structural analisys
     #sily w belce:
-    moment = structural_analisis.calculate_moment(total_load, span)
-    vertical_force = structural_analisis.calculate_vertical_force(combination_load, span)
+    moment = structural_analysis.calculate_moment(total_load, span)
+    vertical_force = structural_analysis.calculate_vertical_force(combination_load, span)
 
     #load profiles
     profiles_df = steel_profiles_selector.load_profiles_from_csv(
