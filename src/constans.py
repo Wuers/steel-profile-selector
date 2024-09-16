@@ -13,3 +13,4 @@ class __Const(object):
 CONST = __Const()
 
 print(CONST.E)
+#test comment
